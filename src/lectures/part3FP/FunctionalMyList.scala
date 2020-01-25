@@ -10,9 +10,11 @@ object Run extends App {
   println(listOfIntegers.zipWith[Int, Int](anotherListOfIntegers, _ + _))
   println(listOfIntegers.fold[Int](0)(_ + _))
 
-  for {
+  val result = for {
     x <- listOfIntegers
-  } println(x)
+    n <- listOfStrings
+  } yield n + "-" + x
+  println(s"This is result: $result")
 
 //  println(listOfIntegers.tail.head)
 //  println(listOfIntegers.toString)

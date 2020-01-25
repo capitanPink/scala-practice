@@ -1,0 +1,24 @@
+package lectures.part3FP
+
+import scala.util.Random
+
+object Sequences extends App {
+
+  val maxRuns = 1000
+  val maxCapacity = 1000000
+  def comparePerformance(collection: Seq[Int]): Double = {
+    val r = new Random()
+    val times = for {
+      it <- 1 to maxRuns
+    } yield {
+      val currentTime = System.nanoTime()
+      collection.updated(r.nextInt(maxCapacity), r.nextInt())
+      System.nanoTime() - currentTime;
+    }
+
+    times.sum * 1.0 / maxRuns
+  }
+
+  println(comparePerformance((1 to maxCapacity).toList))
+  println(comparePerformance((1 to maxCapacity).toVector))
+}
